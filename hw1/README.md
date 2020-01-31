@@ -53,5 +53,24 @@ Some example Emacs configuration files are:
 
 #### Question 2: What is the best/most popular way to extentend Emacs? Does Emacs have a "plugin" system?
 
+Emacs does have a plugin system that allows Emacs to discover and load plugins. 
+According to this Quora article, https://www.quora.com/What-are-some-must-have-Emacs-packages-and-modes-that-one-should-check-out-when-just-starting-out, and the  "What are the best plugins to increase productivity on Emacs" (http://xmodulo.com/best-plugins-to-increase-productivity-on-emacs.html) some of the popular ways to extend Emacs are:
+1. IDO or HELM
+2. Flyspell / Flycheck, or some other syntax/spell checking system
+3. Avy, or another tool for moving around the buffer easily
+4. Magit
+5. A file manager (e.g. Dired+, SC)
+6. Kill-ring enhancements like Popup-Killring
+7. Auto-completion tools of some sort
+8. Which-key or some other functionality discovery tool
+9. Cutomization of Org-mode 
+10. Terminal tools
+11. Publishing tools (Auctex, bibtex, etc)
+12. package management (e.g. use-package)
+13. Appearance tweaks (powerline, etc)
+
 #### Question 3: What are the most popular Emacs extensions for Python development? Use your favorite search engine to find out more about how to use Emacs to edit and work with Python code.
 
+Some of the most popular Emacs extensions for Python development are:
+1. Jedi.el - auto-completion package; aims at helping your Python coding in a non-destructive way; also helps you to find information about Python objects, such as docstring, function arguments and code location.
+2. Projectile - project interaction library for Emacs; its goal is to provide a nice set of features operating on a project level without introducing external dependencies

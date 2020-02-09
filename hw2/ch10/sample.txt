@@ -1,0 +1,15 @@
+Cate apples 40
+Susy oranges 4
+Marke watermelons 19
+Robert pears 10
+Terrison oranges 9
+Lisa peaches 6
+Susy oranges 12
+Marke grapes 400
+Anne mangoes 15
+Greg mangoes 6
+Greg pineapples 2
+Oliverrover rockmelons 2
+Cate apples 23
+Betty lines 12
+

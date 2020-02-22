@@ -4,7 +4,7 @@
 ## PART 1
 
 The Bash Script is located for your reference in the directory hw3/ named "sort_files.sh".
-Here is my break down my BASH script:
+Here is my break down of my BASH script:
 
 1. Let the operating system know this is a bash script:
 ```bash

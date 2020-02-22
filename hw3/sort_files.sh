@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# command to create directories named that word
 cd ~/Documents/Github/csc221/hw3/
-# have a list with all the words
+
 words=(
  dawdy
  loudness
@@ -15,6 +14,7 @@ words=(
  unprejudicated
  vivificate
 )
+
 for i in "${words[@]}"
 do
 		mkdir $i
@@ -37,10 +37,3 @@ do
 		done
 done
 
-for i in "${words[@]}"
-do
-		rm -d $i
-		echo removed $i
-done
-# have a loop that loops over the list of words
-# if statement that tests for a word in a file

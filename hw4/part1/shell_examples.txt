@@ -1,0 +1,220 @@
+In [1]: spam = "That is Alice's cat."
+
+In [2]: spam
+Out[2]: "That is Alice's cat."
+
+In [3]: spam = 'Say hi to Bob\'s mother.'
+
+In [4]: spam
+Out[4]: "Say hi to Bob's mother."
+
+In [5]: print("Hello there!\nHow are you?\nI\'m doing fine.")
+Hello there!
+How are you?
+I'm doing fine.
+
+In [6]: print(r'That is Carol\'s cat.')
+That is Carol\'s cat.
+
+In [18]: %run ./catnapping.py
+Dear Alice,
+
+Eve's cat has been arrested for catnapping, catburglary, and extortion.
+
+
+Sincerely,
+Bob
+
+In [19]: spam = "Hellow, world!"
+
+In [20]: spam[0]
+Out[20]: 'H'
+
+In [21]: spam[4]
+Out[21]: 'o'
+
+In [22]: spam[-1]
+Out[22]: '!'
+
+In [23]: spam[0:5]
+Out[23]: 'Hello'
+
+In [24]: spam[:5]
+Out[24]: 'Hello'
+
+In [25]: spam[7:]
+Out[25]: ' world!'
+
+In [26]: fizz=spam[0:5]
+
+In [27]: fizz
+Out[27]: 'Hello'
+
+In [28]: "Hello" in "Hello, World"
+Out[28]: True
+
+In [29]: 'Hello' in 'Hello'
+Out[29]: True
+
+In [30]: 'HELLO' in 'Hello, World'
+Out[30]: False
+
+In [32]: '' in 'spam'
+Out[32]: True
+
+In [33]: 'cats' not in 'cats and dogs'
+Out[33]: False
+
+In [34]: name='Cate'
+
+In [35]: age=4000
+
+In [37]: 'Hello, my name is ' + name+ '. I am ' + str(age) + ' years old.'
+Out[37]: 'Hello, my name is Cate. I am 4000 years old.'
+
+In [38]: 'my name is %s. I am %s years old.'%(name, age)
+Out[38]: 'my name is Cate. I am 4000 years old.'
+
+In [39]: f'My name is {name}. Next year I will be {age + 1}.'
+Out[39]: 'My name is Cate. Next year I will be 4001.'
+
+In [40]: 'My name is {name}. Next year I will be {age + 1}.'
+Out[40]: 'My name is {name}. Next year I will be {age + 1}.'
+
+In [41]: spam=spam.upper()
+
+In [45]: spam='hello, world!'
+
+In [46]: spam=spam.upper()
+
+In [47]: spam
+Out[47]: 'HELLO, WORLD!'
+
+In [48]: spam = spam.lower()
+
+In [49]: spam
+Out[49]: 'hello, world!'
+
+In [51]: %run ./how_are_you.py
+How are you?
+Great
+I feel great too.
+
+In [53]: spam = 'Hello, world!'
+
+In [54]: spam.islower()
+Out[54]: False
+
+In [55]: spam.isupper()
+Out[55]: False
+
+In [56]: 'HELLO'.isupper()
+Out[56]: True
+
+In [57]: 'abc1234'.islower()
+Out[57]: True
+
+In [58]: '12345'.islower()
+Out[58]: False
+
+In [59]: '12345'.isupper()
+Out[59]: False
+
+In [56]: 'HELLO'.isupper()
+Out[56]: True
+
+In [57]: 'abc1234'.islower()
+Out[57]: True
+
+In [58]: '12345'.islower()
+Out[58]: False
+
+In [59]: '12345'.isupper()
+Out[59]: False
+
+In [60]: 'Hello'.upper()
+Out[60]: 'HELLO'
+
+In [61]: 'Hello'.upper().lower()
+Out[61]: 'hello'
+
+In [62]: 'Hello'.upper().lower().upper()
+Out[62]: 'HELLO'
+
+In [63]: 'Hello'.lower()
+Out[63]: 'hello'
+
+In [64]: 'Hello'.lower().islower()
+Out[64]: True
+
+In [65]: 'hello'.isalpha()
+Out[65]: True
+
+In [66]: 'hello123'.isalpha()
+Out[66]: False
+
+In [67]: 'hello123'.isalnum()
+Out[67]: True
+
+In [68]: '123'.isdecimal()
+Out[68]: True
+
+In [69]: ' '.isspace()
+Out[69]: True
+
+In [70]: 'This Is Title Case'.istitle()
+Out[70]: True
+
+In [71]: 'This Is Title Case 123'.istitle()
+Out[71]: True
+
+In [72]: 'This Is not Title Case'.istitle()
+Out[72]: False
+
+In [73]: 'This Is NOT Title Case Either'.istitle()
+Out[73]: False
+
+In [74]: %run ./validateInput.py
+Enter your age:
+19
+Select a new password (letters and numbers only):
+023[-0
+Passwords can only have letters and numbers.
+Select a new password (letters and numbers only):
+0219''
+Passwords can only have letters and numbers.
+Select a new password (letters and numbers only):
+yup23
+
+In [75]: 'Hello, world!'.startswith('Hello')
+Out[75]: True
+
+In [76]: 'Hello, world!'.endswith('Hello')
+Out[76]: False
+
+In [77]: 'abc123'.startswith('abcdef')
+Out[77]: False
+
+In [78]: 'abc123'.startswith('12')
+Out[78]: False
+
+In [79]: 'Hello, world!'.startswith('Hello, world!')
+Out[79]: True
+
+In [80]: 'Hello, world!'.endswith('Hello, world!')
+Out[80]: True
+
+In [81]: ','.join(['cats', 'rats', 'bats'])
+Out[81]: 'cats,rats,bats'
+
+In [82]: ', '.join(['cats', 'rats', 'bats'])
+Out[82]: 'cats, rats, bats'
+
+In [83]: ''.join(['My', 'name', 'is', 'Simon'])
+Out[83]: 'MynameisSimon'
+
+In [84]: ' '.join(['My', 'name', 'is', 'Simon'])
+Out[84]: 'My name is Simon'
+
+In [86]: 'ABC'.join(['My', 'name', 'is', 'Simon'])
+Out[86]: 'MyABCnameABCisABCSimon'

@@ -218,3 +218,130 @@ Out[84]: 'My name is Simon'
 
 In [86]: 'ABC'.join(['My', 'name', 'is', 'Simon'])
 Out[86]: 'MyABCnameABCisABCSimon'
+
+In [87]: 'My name is Simon'.split()
+Out[87]: ['My', 'name', 'is', 'Simon']
+
+In [88]: 'MyABCnameABCisABCSimon'.split('ABC')
+Out[88]: ['My', 'name', 'is', 'Simon']
+
+In [89]: 'My name is Simon'.split('m')
+Out[89]: ['My na', 'e is Si', 'on']
+
+In [90]: spam = '''Dear Alice,
+    ...: How have you been? I am fine
+    ...: There is a container in the fridge
+    ...: that is labeled "Milk Experiment."
+    ...:
+    ...: Please do not drink it.
+    ...: Sincerely,
+    ...: Bob'''
+
+In [91]: spam.split('\n')
+Out[91]:
+['Dear Alice,',
+ 'How have you been? I am fine',
+ 'There is a container in the fridge',
+ 'that is labeled "Milk Experiment."',
+ '',
+ 'Please do not drink it.',
+ 'Sincerely,',
+ 'Bob']
+
+In [92]: 'Hello, world!'.partition('w')
+Out[92]: ('Hello, ', 'w', 'orld!')
+
+In [93]: 'Hello, world!'.partition('world')
+Out[93]: ('Hello, ', 'world', '!')
+
+In [94]: 'Hello, world!'.partition('o')
+Out[94]: ('Hell', 'o', ', world!')
+
+In [95]: 'Hello, world!'.partition('XYZ')
+Out[95]: ('Hello, world!', '', '')
+
+In [96]: before,sep,after = 'Hello, world!'.partition(' ')
+
+In [97]: before
+Out[97]: 'Hello,'
+
+In [98]: after
+Out[98]: 'world!'
+
+In [99]: 'Hello'.rjust(10)
+Out[99]: '     Hello'
+
+In [100]: 'Hello'.rjust(20)
+Out[100]: '               Hello'
+
+In [101]: 'Hello, world!'.rjust(20)
+Out[101]: '       Hello, world!'
+
+In [102]: 'Hello'.ljust(10)
+Out[102]: 'Hello     '
+
+In [103]: 'Hello'.rjust(20, '*')
+Out[103]: '***************Hello'
+
+In [104]: 'Hello'.rjust(20, '-')
+Out[104]: '---------------Hello'
+
+In [105]: 'Hello'.center(20)
+Out[105]: '       Hello        '
+
+In [106]: 'Hello'.center(20, '=')
+Out[106]: '=======Hello========'
+
+In [108]: %run ./picnicTable.py
+---PICNIC ITEMS--
+sandwiches..    4
+apples......   12
+cups........    4
+cookies..... 8000
+-------PICNIC ITEMS-------
+sandwiches..........     4
+apples..............    12
+cups................     4
+cookies.............  8000
+
+In [109]: spam = '   Hello, World   '
+
+In [110]: spam.strip()
+Out[110]: 'Hello, World'
+
+In [111]: spam.lstrip()
+Out[111]: 'Hello, World   '
+
+In [112]: spam.rstrip()
+Out[112]: '   Hello, World'
+
+In [113]: spam = 'SpamSpamBaconSpamEggsSpamSpam'
+
+In [114]: spam.strip('ampS')
+Out[114]: 'BaconSpamEggs'
+
+In [115]: ord('A')
+Out[115]: 65
+
+In [116]: ord('4')
+Out[116]: 52
+
+In [117]: ord('!')
+Out[117]: 33
+
+In [118]: chr(65)
+Out[118]: 'A'
+
+In [119]: ord('B')
+Out[119]: 66
+
+In [120]: ord('A')<ord('B')
+Out[120]: True
+
+In [121]: chr(ord('A'))
+Out[121]: 'A'
+
+In [122]: chr(ord('A')+1)
+Out[122]: 'B'
+
+

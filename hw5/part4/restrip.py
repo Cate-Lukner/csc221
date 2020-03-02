@@ -22,7 +22,7 @@ def restrip(string, chars=None):
         return striped_string
     # Strip characters specified by chars arguement
     else:
-        strip = re.compile(r'^{}+|{}+$'.format(chars,chars))
+        strip = re.compile(r'^[{}]+|[{}]+$'.format(chars,chars))
         striped_string = strip.sub('', string)
         return striped_string
         

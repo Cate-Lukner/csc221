@@ -14,7 +14,7 @@ def strong_password(string):
 
     '''
     # Regex to test for at least 8 characters, one uppercase, one lowercase, and one digit
-    if re.match(r'[A-Za-z0-9]{8,}', string):
+    if re.match(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[\w\d\W]{8,}', string):
         return True
     else:
         return False

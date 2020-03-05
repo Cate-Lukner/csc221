@@ -69,13 +69,13 @@ The script uses grep to search each file of the current i-th directory for the w
 ## TASK 4
 To complete Task 4, I copied my command for Task 2 that found the most common source words for each directory. I then modified the command so the most common source word among all of the files in all directories would be found:
 ```bash
-awk '{print $1}' dir*/most_common_source.txt | sort | sed '/^$/d' | uniq -c | sort -r | head -1 | awk '{print $2}' > most_common_source_word.txt
+awk '{print $1}' source.txt | sort | sed '/^$/d' | uniq -c | sort -r | head -1 | awk '{print $2}' > most_common_source_word.txt
 ```
-Instead of searching within a specific directory, I had awk search any diretory that started with 'dir' and the file most\_common\_source.txt within all of these directories. Instead of having head give the top ten most common source words, I had head only give the first most common source word. 
+Instead of searching within a specific directory, I had awk search source.txt created in task 3. Instead of having head give the top ten most common source words, I had head only give the first most common source word. 
 
 After running the above command, I ran the following command to find the files with the most common source word:
 ```bash
-awk '$1 == "trisyllable"{print FILENAME}' dir*/file*.txt | uniq | cut -d '/' -f 2 > most_common_source_files.txt
+awk '$1 == "kornskeppur"{print FILENAME}' dir*/file*.txt | uniq | cut -d '/' -f 2 > most_common_source_files.txt
 ```
 I copied the most common word from most\_common\_source.txt file. After, I had awk test if the first column (the column with the source word) of all the files in any directory starting with 'dir' contained the most common word. All of the files in which awk found the most common word were pipped to uniq. Then, uniq pipped each unique file name to cut to remove the directory in which the file was located. The output from cut put into the file most\_common\_source\_files.txt. 
 

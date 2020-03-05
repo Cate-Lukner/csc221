@@ -20,6 +20,19 @@ The loop moves files based on if their extension is .txt and their last digit ma
 
 ## TASK 2
 
+Since I did not want to go through every directory and create the most\_common\_source.txt and most\_common\_dest.txt, I created the following bash script to create those files for me:
+```bash
+#!/bin/bash
+
+# Create files most_common_source.txt and most_common_dest.txt in each directory
+for i in {0..9}
+do
+                cd ~/Documents/Github/csc221/midterm
+                touch dir${i}/most_common_source.txt
+                touch dir${i}/most_common_dest.txt
+done
+```
+
 To place the 10 most common source and dest words from all the files in each directory I created the following bash script named find\_most\_common\_words.sh:
 ```bash
 #!/bin/bash
@@ -27,20 +40,20 @@ To place the 10 most common source and dest words from all the files in each dir
 # find most common source words for each file
 for i in {0..9}
 do
-	awk '{print $1}' dir${i}/*.txt | sort -r | sed '/^$/d' | uniq -c | sort -r | head -10 | awk '{print $2}' > dir${i}/most_common_source.txt
+	awk '{print $1}' dir${i}/*.txt | sort | sed '/^$/d' | uniq -c | sort -r | head -10 | awk '{print $2}' > dir${i}/most_common_source.txt
 done
 
 # Find most common dest words for each file
 for i in {0..9}
 do
-	awk '{print $2}' dir${i}/*.txt | sort -r | sed '/^$/d' | uniq -c | sort -r | head -10 | awk '{print $2}' > dir${i}/most_common_dest.txt
+	awk '{print $2}' dir${i}/*.txt | sort | sed '/^$/d' | uniq -c | sort -r | head -10 | awk '{print $2}' > dir${i}/most_common_dest.txt
 done
 ```
 Both loops go through the i-th directory. In the i-th directory, awk prints the appropriate column and then pipes it to sort. After sorting, the output is pipped to sed to remove all the extra whitespace. Then sed pipes to unique to get a unique count of each word. After sorting again, head gets the words with the top ten counts. Awk prints the words without the counts then the output is given to the appropriate file. 
 
 ## TASK 3
 
-To complete Task 3, I created the following bash script named task3\_script.sh:
+To complete Task 3, I created the following bash script named task3\_loop.sh:
 ```bash
 #!/bin/bash
 
@@ -56,7 +69,13 @@ The script uses grep to search each file of the current i-th directory for the w
 ## TASK 4
 To complete Task 4, I copied my command for Task 2 that found the most common source words for each directory. I then modified the command so the most common source word among all of the files in all directories would be found:
 ```bash
-awk '{print $1}' dir*/most_common_source.txt | sort -r | sed '/^$/d' | uniq -c | sort -r | head -1 | awk '{print $2}' > most_common_source_word.txt
+awk '{print $1}' dir*/most_common_source.txt | sort | sed '/^$/d' | uniq -c | sort -r | head -1 | awk '{print $2}' > most_common_source_word.txt
 ```
 Instead of searching within a specific directory, I had awk search any diretory that started with 'dir' and the file most\_common\_source.txt within all of these directories. Instead of having head give the top ten most common source words, I had head only give the first most common source word. 
+
+After running the above command, I ran the following command to find the files with the most common source word:
+```bash
+awk '$1 == "trisyllable"{print FILENAME}' dir*/file*.txt | uniq | cut -d '/' -f 2 > most_common_source_files.txt
+```
+I copied the most common word from most\_common\_source.txt file. After, I had awk test if the first column (the column with the source word) of all the files in any directory starting with 'dir' contained the most common word. All of the files in which awk found the most common word were pipped to uniq. Then, uniq pipped each unique file name to cut to remove the directory in which the file was located. The output from cut put into the file most\_common\_source\_files.txt. 
 

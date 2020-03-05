@@ -27,13 +27,13 @@ To place the 10 most common source and dest words from all the files in each dir
 # find most common source words for each file
 for i in {0..9}
 do
-	awk '{print $1}' dir${i}/*.txt | sort -r | uniq -c | sort -r | head -10 | awk '{print $2}' > dir${i}/most_common_source.txt
+	awk '{print $1}' dir${i}/*.txt | sort -r | sed '/^$/d' | uniq -c | sort -r | head -10 | awk '{print $2}' > dir${i}/most_common_source.txt
 done
 
 # Find most common dest words for each file
 for i in {0..9}
 do
-	awk '{print $2}' dir${i}/*.txt | sort -r | uniq -c | sort -r | head -10 | awk '{print $2}' > dir${i}/most_common_dest.txt
+	awk '{print $2}' dir${i}/*.txt | sort -r | sed '/^$/d' | uniq -c | sort -r | head -10 | awk '{print $2}' > dir${i}/most_common_dest.txt
 done
 ```
 Both loops go through the i-th directory. In the i-th directory, awk prints the appropriate column and then pipes it to sort. Sort pipes to unique to get a unique count of each word. After sorting again, head gets the words with the top ten counts. Awk prints the words without the counts then the output is given to the appropriate file. 

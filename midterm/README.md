@@ -7,7 +7,7 @@ For task 1, I created directories dir(0-9) using the following command:
 mkdir dir1 dir2 dir3 dir4 dir5 dir6 dir7 dir8 dir9
 ```
 
-To move each of the files by their last digit into their respect directories, I created a BASH file titled move\_files.sh and it contained the following loop:
+To move each of the files by their last digit into their respective directories, I created a BASH file titled move\_files.sh and it contained the following loop:
 ```bash
 #!/bin/bash
 

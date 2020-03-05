@@ -37,3 +37,18 @@ do
 done
 ```
 Both loops go through the i-th directory. In the i-th directory, awk prints the appropriate column and then pipes it to sort. After sorting, the output is pipped to sed to remove all the extra whitespace. Then sed pipes to unique to get a unique count of each word. After sorting again, head gets the words with the top ten counts. Awk prints the words without the counts then the output is given to the appropriate file. 
+
+## TASK 3
+
+To complete Task 3, I created the following bash script named task3\_script.sh:
+```bash
+#!/bin/bash
+
+# Find pairs in each of directories' files that contain most common source words
+# Output passed to source.txt in midterm directory
+for i in {0..9}
+do
+		grep -Ff dir${i}/most_common_source.txt dir${i}/*${i}.txt | cut -d ':' -f 2 >> source.txt
+done
+```
+The script uses grep to search each file of the current i-th directory for the words listed in the specified directory's most\_common\_source.txt file. The output of grep is pipped to cut which uses a colon as a delimiter. Cut grabs the second "column" (the column with the pairs) and passes the output to source. This command is run for every directory. 

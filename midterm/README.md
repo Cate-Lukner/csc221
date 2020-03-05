@@ -56,7 +56,7 @@ The script uses grep to search each file of the current i-th directory for the w
 ## TASK 4
 To complete Task 4, I copied my command for Task 2 that found the most common source words for each directory. I then modified the command so the most common source word among all of the files in all directories would be found:
 ```bash
-awk '{print $1}' dir*/*.txt | sort -r | sed '/^$/d' | uniq -c | sort -r | head -1 | awk '{print $2}' > most_common_source_word.txt
+awk '{print $1}' dir*/most_common_source.txt | sort -r | sed '/^$/d' | uniq -c | sort -r | head -1 | awk '{print $2}' > most_common_source_word.txt
 ```
-Instead of searching within a specific directory, I had awk search any diretory that started with 'dir' and the files within any of these directories ending with .txt. Instead of having head give the top ten most common source words, I had head only give the first most common source word. 
+Instead of searching within a specific directory, I had awk search any diretory that started with 'dir' and the file most\_common\_source.txt within all of these directories. Instead of having head give the top ten most common source words, I had head only give the first most common source word. 
 

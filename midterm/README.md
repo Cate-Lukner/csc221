@@ -20,7 +20,7 @@ The loop moves files based on if their extension is .txt and their last digit ma
 
 ## TASK 2
 
-To place the 10 most common source and dest words from all the files in each directory I created the following bash script:
+To place the 10 most common source and dest words from all the files in each directory I created the following bash script named find\_most\_common\_words.sh:
 ```bash
 #!/bin/bash
 

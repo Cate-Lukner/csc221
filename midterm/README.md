@@ -36,4 +36,4 @@ do
 	awk '{print $2}' dir${i}/*.txt | sort -r | sed '/^$/d' | uniq -c | sort -r | head -10 | awk '{print $2}' > dir${i}/most_common_dest.txt
 done
 ```
-Both loops go through the i-th directory. In the i-th directory, awk prints the appropriate column and then pipes it to sort. Sort pipes to unique to get a unique count of each word. After sorting again, head gets the words with the top ten counts. Awk prints the words without the counts then the output is given to the appropriate file. 
+Both loops go through the i-th directory. In the i-th directory, awk prints the appropriate column and then pipes it to sort. After sorting, the output is pipped to sed to remove all the extra whitespace. Then sed pipes to unique to get a unique count of each word. After sorting again, head gets the words with the top ten counts. Awk prints the words without the counts then the output is given to the appropriate file. 

@@ -1,0 +1,13 @@
+  1. Przenie¶ kursor do tego wiersza.
+
+  2. Wci¶nij  v  i przenie¶ kursor do punktu 5. Zauwa¿, ¿e tekst zosta³
+     pod¶wietlony.
+
+  3. Wci¶nij znak  : . Na dole ekranu pojawi siê  :'<,'> .
+
+  4. Wpisz  w TEST , gdzie TEST to nazwa pliku, który jeszcze nie istnieje.
+     Upewnij siê, ¿e widzisz  :'<,'>w TEST zanim wci¶niesz Enter.
+
+  5. Vim zapisze wybrane linie do pliku TEST. U¿yj  :!dir  lub  :!ls , ¿eby to
+     zobaczyæ. Jeszcze go nie usuwaj! U¿yjemy go w nastêpnej lekcji.
+

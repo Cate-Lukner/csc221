@@ -1,0 +1,34 @@
+In [1]: from pathlib import Path
+
+In [2]: Path('spam', 'bacon', 'eggs')
+Out[2]: WindowsPath('spam/bacon/eggs')
+
+In [3]: str(Path('spam', 'bacon', 'eggs'))
+Out[3]: 'spam\\bacon\\eggs'
+
+In [4]: from pathlib import Path
+
+In [5]: myFiles = ['accounts.txt', 'details.csv', 'invite.dox']
+
+In [7]: for filename in myFiles:
+   ...:     print(Path(r'C:\Users\Al', filename))
+   ...:
+C:\Users\Al\accounts.txt
+C:\Users\Al\details.csv
+C:\Users\Al\invite.dox
+
+In [8]: Path('spam')/'bacon'/'eggs'
+Out[8]: WindowsPath('spam/bacon/eggs')
+
+In [9]: Path('spam')/Path('bacon/eggs')
+Out[9]: WindowsPath('spam/bacon/eggs')
+
+In [10]: Path('spam')/Path('bacon', 'eggs')
+Out[10]: WindowsPath('spam/bacon/eggs')
+
+In [11]: homefolder = r'C:\Users\Al'
+
+In [12]: subFolder='spam'
+
+In [14]: homefolder+'\\'+subFolder
+Out[14]: 'C:\\Users\\Al\\spam'

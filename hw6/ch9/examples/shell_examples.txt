@@ -32,3 +32,370 @@ In [12]: subFolder='spam'
 
 In [14]: homefolder+'\\'+subFolder
 Out[14]: 'C:\\Users\\Al\\spam'
+
+In [6]: '\\'.join([homeFolder, subFolder])
+Out[6]: 'C:\\Users\\Al\\spam'
+
+In [12]: homeFolder = Path('C:/Users/Al')
+
+In [13]: subFolder = Path('spam')
+
+In [14]: homeFolder / subFolder
+Out[14]: WindowsPath('C:/Users/Al/spam')
+
+In [15]: str(homeFolder / subFolder)
+Out[15]: 'C:\\Users\\Al\\spam'
+
+In [16]: 'spam' / 'bacon' / 'eggs'
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-16-192269df798b> in <module>()
+----> 1 'spam' / 'bacon' / 'eggs'
+
+TypeError: unsupported operand type(s) for /: 'str' and 'str'
+
+In [17]: import os
+
+In [18]: Path.cwd()
+Out[18]: WindowsPath('C:/Users/catlu/AppData/Local/Programs/Python/Python37-32/Scripts')
+
+In [20]: os.chdir('C:\\Windows\\System32')
+
+In [21]: Path.cwd()
+Out[21]: WindowsPath('C:/Windows/System32')
+
+In [22]: os.chdir('C:/ThisFolderDoesNotExist')
+---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+<ipython-input-22-e66a83d17b76> in <module>()
+----> 1 os.chdir('C:/ThisFolderDoesNotExist')
+
+FileNotFoundError: [WinError 2] Nie można odnaleźć określonego pliku: 'C:/ThisFolderDoesNotExist'
+
+In [23]: Path.home()
+Out[23]: WindowsPath('C:/Users/catlu')
+
+In [24]: os.makedirs('C:\\delicious\\walnut\\waffles')
+
+In [25]: Path(r'C:\Users\Al\spam').mkdir()
+
+In [27]: Path.cwd()
+Out[27]: WindowsPath('C:/Windows/System32')
+
+In [28]: Path.cwd().is_absolute()
+Out[28]: True
+
+In [29]: Path('spam/bacon/eggs/').is_absolute()
+Out[29]: False
+
+In [30]: Path('my/relative/path')
+Out[30]: WindowsPath('my/relative/path')
+
+In [31]: Path.cwd() / Path('my/relative/path')
+Out[31]: WindowsPath('C:/Windows/System32/my/relative/path')
+
+In [32]: Path('my/relative/path')
+Out[32]: WindowsPath('my/relative/path')
+
+In [33]: Path.home() / Path('my/relative/path')
+Out[33]: WindowsPath('C:/Users/catlu/my/relative/path')
+
+In [34]: os.path.abspath('.')
+Out[34]: 'C:\\Windows\\System32'
+
+In [35]: os.path.abspath('.\\Scripts')
+Out[35]: 'C:\\Windows\\System32\\Scripts'
+
+In [36]: os.path.isabs('.')
+Out[36]: False
+
+In [37]: os.path.isabs(os.path.abspath('.'))
+Out[37]: True
+
+In [38]: os.path.relpath('C:\\Windows', 'C:\\')
+Out[38]: 'Windows'
+
+In [39]: os.path.relpath('C:\\Windows', 'C:\\spam\\eggs')
+Out[39]: '..\\..\\Windows'
+
+In [40]: p = Path('C:/Users/Al/spam.txt')
+
+In [41]: p.anchor
+Out[41]: 'C:\\'
+
+In [42]: p.parent
+Out[42]: WindowsPath('C:/Users/Al')
+
+In [43]: p.name
+Out[43]: 'spam.txt'
+
+In [44]: p.stem
+Out[44]: 'spam'
+
+In [45]: p.suffix
+Out[45]: '.txt'
+
+In [46]: p.drive
+Out[46]: 'C:'
+
+In [59]: Path.cwd()
+Out[59]: WindowsPath('C:/Users/catlu/AppData/Local/Programs/Python/Python37-32')
+
+In [60]: Path.cwd().parents[0]
+Out[60]: WindowsPath('C:/Users/catlu/AppData/Local/Programs/Python')
+
+In [61]: Path.cwd().parents[1]
+Out[61]: WindowsPath('C:/Users/catlu/AppData/Local/Programs')
+
+In [62]: Path.cwd().parents[2]
+Out[62]: WindowsPath('C:/Users/catlu/AppData/Local')
+
+In [63]: Path.cwd().parents[3]
+Out[63]: WindowsPath('C:/Users/catlu/AppData')
+
+In [64]: Path.cwd().parents[4]
+Out[64]: WindowsPath('C:/Users/catlu')
+
+In [65]: Path.cwd().parents[6]
+Out[65]: WindowsPath('C:/')
+
+In [66]: calcFilePath = 'C:\\Windows\\System32\\calc.exe'
+
+In [67]: os.path.basename(calcFilePath)
+Out[67]: 'calc.exe'
+
+In [68]: os.path.dirname(calcFilePath)
+Out[68]: 'C:\\Windows\\System32'
+
+In [69]: calcFilePath = 'C:\\Windows\\System32\\calc.exe'
+
+In [70]: os.path.split(calcFilePath)
+Out[70]: ('C:\\Windows\\System32', 'calc.exe')
+
+In [71]: (os.path.dirname(calcFilePath), os.path.basename(calcFilePath))
+Out[71]: ('C:\\Windows\\System32', 'calc.exe')
+
+In [72]: calcFilePath.split(os.sep)
+Out[72]: ['C:', 'Windows', 'System32', 'calc.exe']
+
+In [73]: '/usr/bin'.split(os.sep)
+Out[73]: ['/usr/bin']
+
+In [74]: os.path.getsize('C:\\Windows\\System32\\calc.exe')
+Out[74]: 26112
+
+In [75]: os.listdir('C:\\Windows\\System32')
+Out[75]:
+['.venus',
+ '.venvs',
+ '0409',
+ '12520437.cpx',
+ '12520850.cpx',
+ '@AppHelpToast.png',
+ '@AudioToastIcon.png',
+ '@EnrollmentToastIcon.png',
+ '@VpnToastIcon.png',
+ 'ipconfig.exe',
+ 'IPELoggingDictationHelper.dll',
+ 'IPHLPAPI.DLL',
+ 'Ipmi',
+ 'IpNatHlpClient.dll',
+ 'iprop.dll',
+ 'iprtprio.dll',
+ 'iprtrmgr.dll',
+ 'KBDCHER.DLL',
+ ---Snip---
+ 'KBDCHERP.DLL',
+ ...]
+
+In [76]: totalSize = 0
+
+In [77]: for filename in os.listdir('C:\\Windows\\System32'):
+    ...:     totalSize = totalSize + os.path.getsize(os.path.join('C:\\Windows\\Sy
+    ...: stem32', filename))
+    ...:
+
+In [78]: print(totalSize)
+1102719480
+
+In [79]: p = Path('C:/Users/Al/Desktop')
+
+In [80]: p.glob('*')
+Out[80]: <generator object Path.glob at 0x01515930>
+
+In [81]: list(p.glob('*'))
+Out[81]: []
+
+In [82]: os.chdir('C:/Users/catlu')
+
+In [83]: p = Path('C:/Users/catlu/Desktop')
+
+In [84]: p.glob('*')
+Out[84]: <generator object Path.glob at 0x015150F0>
+
+In [85]: list(p.glob('*'))
+Out[85]:
+[WindowsPath('C:/Users/catlu/Desktop/desktop.ini'),
+ WindowsPath('C:/Users/catlu/Desktop/GitHub Desktop.lnk'),
+ WindowsPath('C:/Users/catlu/Desktop/Microsoft Edge.lnk'),
+ WindowsPath('C:/Users/catlu/Desktop/PeaZip.lnk'),
+ WindowsPath('C:/Users/catlu/Desktop/RPBCQlp.jpg'),
+ WindowsPath('C:/Users/catlu/Desktop/Spotify.lnk')]
+
+In [86]: list(p.glob('*.txt'))
+Out[86]: []
+
+In [87]: list(p.glob('project?.docx'))
+Out[87]: []
+
+In [88]: list(p.glob('*.?x?'))
+Out[88]: []
+
+In [89]: p = Path('C:/Users/catlu/Documents')
+
+In [90]: for textFilePathObj in p.glob('*.txt')
+  File "<ipython-input-90-69a824ed5977>", line 1
+    for textFilePathObj in p.glob('*.txt')
+                                          ^
+SyntaxError: invalid syntax
+
+
+In [91]: for textFilePathObj in p.glob('*.txt'):
+    ...:     print(textFilePathObj)
+    ...:
+
+In [92]: for textFilePathObj in p.glob('*.docx'):
+    ...:     print(textFilePathObj)
+    ...:
+C:\Users\catlu\Documents\Catherine Lukner Polito and Associates 2019 Scholarship Contest.docx
+C:\Users\catlu\Documents\Chapter 7 Reading Assignment.docx
+C:\Users\catlu\Documents\~$https.docx
+
+In [93]: winDir = Path('C:/Windows')
+
+In [94]: notExistsDir = Path('C:/This/Folder/Does/Not/Exist')
+
+In [95]: calcFile = Path('C:/Windows/System32/calc.exe')
+
+In [96]: winDir.exists()
+Out[96]: True
+
+In [97]: winDir.is_dir()
+Out[97]: True
+
+In [98]: notExistsDir.exists()
+Out[98]: False
+
+In [99]: calcFile.is_file()
+Out[99]: True
+
+In [100]: calcFile.is_dir()
+Out[100]: False
+
+In [101]: dDrive = Path('D:/')
+
+In [102]: dDrive.exists()
+Out[102]: False
+
+In [103]: from pathlib import Path
+
+In [104]: p = Path('spam.txt')
+
+In [105]: p.write_text('Hello, world!')
+Out[105]: 13
+
+In [106]: p.read_text()
+Out[106]: 'Hello, world!'
+
+In [120]: helloFile = open('C:\\Users\\catlu\\Documents\\hello.txt')
+
+In [121]: helloContent = helloFile.read()
+
+In [125]: sonnetFile = open('C:\\Users\\catlu\\Documents\\sonnect29.txt')
+
+In [126]: sonnetFile.readlines()
+Out[126]:
+["When, in disgrace with fortune and men's eyes,\n",
+ 'I all alone beweep my outcast state,\n',
+ 'And trouble deaf heaven with my bootless cries,\n',
+ 'And look upon myself and curse my fate,\n']
+
+In [127]: baconFile = open('bacon.txt', 'w')
+
+In [128]: baconFile.write('Hello, world!\n')
+Out[128]: 14
+
+In [129]: baconFile.close()
+
+In [130]: baconFile = open('bacon.txt', 'a')
+
+In [131]: baconFile.write('Bacon is not a vegan.')
+Out[131]: 21
+
+In [132]: baconFile.close()
+
+In [133]: baconFile = open('bacon.txt')
+
+In [134]: content = baconFile.read()
+
+In [135]: baconFile.close()
+
+In [136]: print(content)
+Hello, world!
+Bacon is not a vegan.
+
+In [137]: import shelve
+
+In [138]: shelfFile = shelve.open('mydata')
+
+In [139]: cats = ['Zophie', 'Pooka', 'Simon']
+
+In [140]: shelfFile['cats'] = cats
+
+In [141]: shelfFile.close()
+
+In [142]: shelffile = shelve.open('mydata')
+
+In [143]: type(shelffile)
+Out[143]: shelve.DbfilenameShelf
+
+In [144]: shelffile['cats']
+Out[144]: ['Zophie', 'Pooka', 'Simon']
+
+In [145]: shelffile.close()
+
+In [146]: shelfFile = shelve.open('mydata')
+
+In [147]: list(shelfFile.keys())
+Out[147]: ['cats']
+
+In [148]: list(shelfFile.values())
+Out[148]: [['Zophie', 'Pooka', 'Simon']]
+
+In [149]: shelfFile.close()
+
+In [150]: import pprint
+
+In [151]: cats = [{'name':'Zophie', 'desc':'chubby'}, {'name':'Pooka', 'desc':'flu
+     ...: ffy'}]
+
+In [152]: pprint.pformat(cats)
+Out[152]: "[{'desc': 'chubby', 'name': 'Zophie'}, {'desc': 'fluffy', 'name': 'Pooka'}]"
+
+In [153]: fileObj = open('myCats.py', 'w')
+
+In [155]: fileObj.write('cats =' + pprint.pformat(cats) + '\n')
+Out[155]: 82
+
+In [156]: fileObj.close()
+
+In [157]: import myCats
+
+In [158]: myCats.cats
+Out[158]: [{'desc': 'chubby', 'name': 'Zophie'}, {'desc': 'fluffy', 'name': 'Pooka'}]
+
+In [159]: myCats.cats[0]
+Out[159]: {'desc': 'chubby', 'name': 'Zophie'}
+
+In [160]: myCats.cats[0]['name']
+Out[160]: 'Zophie'

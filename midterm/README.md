@@ -52,3 +52,11 @@ do
 done
 ```
 The script uses grep to search each file of the current i-th directory for the words listed in the specified directory's most\_common\_source.txt file. The output of grep is pipped to cut which uses a colon as a delimiter. Cut grabs the second "column" (the column with the pairs) and passes the output to source. This command is run for every directory. 
+
+## TASK 4
+To complete Task 4, I copied my command for Task 2 that found the most common source words for each directory. I then modified the command so the most common source word among all of the files in all directories would be found:
+```bash
+awk '{print $1}' dir*/*.txt | sort -r | sed '/^$/d' | uniq -c | sort -r | head -1 | awk '{print $2}' > most_common_source_word.txt
+```
+Instead of searching within a specific directory, I had awk search any diretory that started with 'dir' and the files within any of these directories ending with .txt. Instead of having head give the top ten most common source words, I had head only give the first most common source word. 
+

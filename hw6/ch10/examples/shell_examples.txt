@@ -1,0 +1,111 @@
+In [1]: import shutil, os
+
+In [2]: from pathlib import Path
+
+In [3]: p = Path.home()
+
+In [4]: shutil.copy(p/'spam.txt',p/'some_folder')
+Out[4]: WindowsPath('C:/Users/catlu/some_folder')
+
+In [5]: shutil.copy(p/'eggs.txt',p/'some_folder/eggs2.txt')
+Out[4]: WindowsPath('C:/Users/catlu/some_folder/eggs2.txt')
+
+In [64]: shutil.copy(p/'spam.txt', p/'some_folder')
+Out[64]: 'C:\\Users\\catlu\\some_folder\\spam.txt'    
+
+In [65]: shutil.copy('C:\\Users\\catlu\\eggs.txt', 'C:\\Users\catlu\\eggs2.txt')
+Out[65]: WindowsPath('C:/Users/catlu/some_folder/eggs2.txt') 
+
+In [66]: shutil.move('C:\\Users\\catlu\\eggs.txt', 'C:\\Users\\catlu\\bacon')
+Out[66]: 'C:\\Users\\catlu\\bacon'
+
+In [68]: shutil.move('C:\\Users\\catlu\\spam.txt', 'C:\\Users\\catlu\\new_bacon.tx
+    ...: t')
+Out[68]: 'C:\\Users\\catlu\\new_bacon.txt'
+
+In [70]: shutil.move('eggs2.txt', 'some_new_folder')
+Out[70]: 'some_new_folder'
+
+In [78]: shutil.move('spam.txt', 'c:\\nope\\eggs')
+---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+c:\users\catlu\appdata\local\programs\python\python37-32\lib\shutil.py in move(src, dst, copy_function)
+    556     try:
+--> 557         os.rename(src, real_dst)
+    558     except OSError:
+--SNIP--
+FileNotFoundError: [Errno 2] No such file or directory: 'c:\\nope\\eggs'
+
+In [11]: import send2trash
+
+In [12]: baconFile = open('bacon.txt', 'a') # creates the file
+
+In [13]: baconFile.write('Bacon is not a vegetable.')
+Out[13]: 25
+
+In [14]: baconFile.close()
+
+In [15]: send2trash.send2trash('bacon.txt')
+
+In [16]: Path.home()
+Out[16]: WindowsPath('C:/Users/catlu')
+
+In [28]: exampleZip = zipfile.ZipFile('Documents/midterm.zip')
+
+In [29]: exampleZip.namelist()
+Out[29]:
+['midterm/create_task_2_files.sh',
+ 'midterm/dir0/',
+ 'midterm/dir0/file000.txt',
+ 'midterm/dir0/file010.txt',
+ 'midterm/dir0/file020.txt',
+ 'midterm/dir0/file030.txt',
+ 'midterm/dir0/file040.txt',
+ 'midterm/dir0/file050.txt',
+ 'midterm/dir0/file060.txt',
+ 'midterm/dir0/file070.txt',
+ 'midterm/dir0/file080.txt',
+ 'midterm/dir0/file090.txt',
+ 'midterm/dir0/file100.txt',
+ 'midterm/dir3/file023.txt',
+ 'midterm/dir3/file033.txt',
+ --Snip--
+ 'midterm/move_files.sh',
+ 'midterm/README.md',
+ 'midterm/README.txt',
+ 'midterm/source.txt',
+ 'midterm/task3_loop.sh']
+
+In [32]: spamInfo = exampleZip.getinfo('midterm/source.txt')
+
+In [33]: spamInfo.file_size
+Out[33]: 85341
+
+In [35]: spamInfo.compress_size
+Out[35]: 18501
+
+In [36]: f'Compressed file is {round(spamInfo.file_size / spamInfo.compress_size,
+    ...: 2)}x smaller!'
+Out[36]: 'Compressed file is 4.61x smaller!'
+
+In [37]: exampleZip.close()
+
+In [40]: exampleZip = zipfile.ZipFile('Documents/midterm.zip')
+
+In [41]: exampleZip.extractall()
+
+In [42]: exampleZip.close()
+
+In [48]: exampleZip.extract('midterm/source.txt')
+Out[48]: 'C:\\Users\\catlu\\midterm\\source.txt'
+
+In [49]: exampleZip.extract('midterm/source.txt', 'C:\\some\\new\\folders')
+Out[49]: 'C:\\some\\new\\folders\\midterm\\source.txt'
+
+In [50]: exampleZip.close()
+
+In [51]: newZip = zipfile.ZipFile('new.zip', 'w')
+
+In [52]: newZip.write('spam.txt', compress_type=zipfile.ZIP_DEFLATED)
+
+In [53]: newZip.close()

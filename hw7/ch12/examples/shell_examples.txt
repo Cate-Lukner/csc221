@@ -1,0 +1,164 @@
+SHELL EXAMPLES CHAPTER 12
+Catherine Lukner
+
+In [1]: import webbrowser
+
+In [2]: webbrowser.open('https://inventwithpython.com/')
+Out[2]: True
+
+In [3]: cd ~/Documents/Github/csc221/hw7/ch12/examples
+C:\Users\catlu\Documents\Github\csc221\hw7\ch12\examples
+
+In [4]: %run mapIt.py
+
+In [5]: # The above script did indeed open a google maps page with my copied addre
+   ...: ss
+
+In [6]: import requests
+
+In [7]: res = requests.get('https://automatetheboringstuff.com/files/rj.txt')
+
+In [8]: type(res)
+Out[8]: requests.models.Response
+
+In [9]: res.status_code == requests.codes.ok
+Out[9]: True
+
+In [10]: len(res.text)
+Out[10]: 178978
+
+In [11]: print(res.text[:250])
+The Project Gutenberg EBook of Romeo and Juliet, by William Shakespeare
+
+This eBook is for the use of anyone anywhere at no cost and with
+almost no restrictions whatsoever.  You may copy it, give it away or
+re-use it under the terms of the Projec
+
+In [12]: res = requests.get('https://inventwithpython.com/page_that_does_not_exist
+    ...: ')
+
+In [13]: res.raise_for_status()
+---------------------------------------------------------------------------
+HTTPError                                 Traceback (most recent call last)
+<ipython-input-13-cd6be6b74546> in <module>()
+----> 1 res.raise_for_status()
+
+c:\users\catlu\appdata\local\programs\python\python37-32\lib\site-packages\requests\models.py in raise_for_status(self)
+    938
+    939         if http_error_msg:
+--> 940             raise HTTPError(http_error_msg, response=self)
+    941
+    942     def close(self):
+
+HTTPError: 404 Client Error: Not Found for url: https://inventwithpython.com/page_that_does_not_exist
+
+In [14]: try:
+    ...:     res.raise_for_status()
+    ...: except Exception as exc:
+    ...:     print('There was a problem: %s'%(exc))
+    ...:
+There was a problem: 404 Client Error: Not Found for url: https://inventwithpython.com/page_that_does_not_exist
+
+In [9]: res = requests.get('https://automatetheboringstuff.com/files/rj.txt')
+
+In [10]: res.raise_for_status()
+
+In [11]: playFile = open('RomeoAndJuliet.txt', 'wb')
+
+In [12]: for chunk in res.iter_content(100000):
+    ...:     playFile.write(chunk)
+    ...:
+
+In [13]: playFile.close()
+
+In [18]: import requests, bs4
+
+In [19]: res = requests.get('https://nostarch.com')
+
+In [20]: res.raise_for_status()
+
+In [22]: noStarchSoup = bs4.BeautifulSoup(res.text, 'html.parser')
+
+In [24]: type(noStarchSoup)
+Out[24]: bs4.BeautifulSoup
+
+In [30]: exampleFile = open('example.html')
+
+In [34]: exampleSoup = bs4.BeautifulSoup(exampleFile, 'html.parser')
+
+In [35]: type(exampleSoup)
+Out[35]: bs4.BeautifulSoup
+
+In [36]: import bs4
+
+In [37]: exampleFile = open('example.html')
+
+In [38]: exampleSoup = bs4.BeautifulSoup(exampleFile.read(), 'html.parser')
+
+In [39]: elems = exampleSoup.select('#author')
+
+In [40]: type(elems) # elems is a list of Tag objects
+Out[40]: bs4.element.ResultSet
+
+In [41]: len(elems)
+Out[41]: 1
+
+In [42]: type(elems[0])
+Out[42]: bs4.element.Tag
+
+In [43]: str(elems[0])
+Out[43]: '<span id="author">Al Sweigart</span>'
+
+In [44]: elems[0].getText()
+Out[44]: 'Al Sweigart'
+
+In [45]: elems[0].attrs
+Out[45]: {'id': 'author'}
+
+In [46]: pElems = exampleSoup.select('p')
+
+In [47]: str(pElem[0])
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-47-ed4cdd1bccf8> in <module>()
+----> 1 str(pElem[0])
+
+NameError: name 'pElem' is not defined
+
+In [48]: str(pElems[0])
+Out[48]: '<p>Download my <strong>Python</strong> book from <a href="https://inventwithpython.com">my website</a>.</p>'
+
+In [49]: pElems[0].getText()
+Out[49]: 'Download my Python book from my website.'
+
+In [50]: str(pElems[1])
+Out[50]: '<p class="slogan">Learn Python the easy way!</p>'
+
+In [51]: pElems[1].getText()
+Out[51]: 'Learn Python the easy way!'
+
+In [52]: str(pElems[2])
+Out[52]: '<p>By<span id="author">Al Sweigart</span></p>'
+
+In [53]: pElems[2].getText()
+Out[53]: 'ByAl Sweigart'
+
+In [54]: import bs4
+
+In [55]: soup = bs4.BeautifulSoup(open('example.html'), 'html.parser')
+
+In [56]: spanElem = soup.select('span')[0]
+
+In [57]: str(spanElem)
+Out[57]: '<span id="author">Al Sweigart</span>'
+
+In [58]: spanElem.get('id')
+Out[58]: 'author'
+
+In [59]: spanElem.get('some_nonexistent_addr') == None
+Out[59]: True
+
+In [60]: spanElem.attrs
+Out[60]: {'id': 'author'}
+
+

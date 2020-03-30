@@ -1,0 +1,165 @@
+CHAPTER 16 SHELL EXAMPLES
+Cate Lukner
+
+In [143]: import csv
+
+In [144]: exampleFile = open('example.csv')
+
+In [145]: exampleReader = csv.reader(exampleFile)
+
+In [146]: exampleData = list(exampleReader)
+
+In [147]: exampleData
+Out[147]:
+[['4/5/2014 13:34', 'Apples', '73'],
+ ['4/5/2014 3:41', 'Cherries', '85'],
+ ['4/6/2014 12:46', 'Pears', '14'],
+ ['4/8/2014 8:59', 'Oranges', '52'],
+ ['4/10/2014 2:07', 'Apples', '152'],
+ ['4/10/2014 18:10', 'Bananas', '23'],
+ ['4/10/2014 2:40', 'Strawberries', '98']]
+
+In [148]: exampleData[0][0]
+Out[148]: '4/5/2014 13:34'
+
+In [149]: exampleData[0][1]
+Out[149]: 'Apples'
+
+In [150]: exampleData[0][2]
+Out[150]: '73'
+
+In [151]: exampleData[1][1]
+Out[151]: 'Cherries'
+
+In [152]: exampleData[6][1]
+Out[152]: 'Strawberries'
+
+In [153]: for row in exampleReader:
+     ...:     print('Row #' + str(exampleReader.line_num) + '' + str(row))
+     ...:
+
+In [154]: exampleFile = open('example.csv')
+
+In [155]: exampleReader = csv.reader(exampleFile)
+
+In [156]: for row in exampleReader:
+     ...:     print('Row #' + str(exampleReader.line_num) + '' + str(row))
+     ...:
+Row #1['4/5/2014 13:34', 'Apples', '73']
+Row #2['4/5/2014 3:41', 'Cherries', '85']
+Row #3['4/6/2014 12:46', 'Pears', '14']
+Row #4['4/8/2014 8:59', 'Oranges', '52']
+Row #5['4/10/2014 2:07', 'Apples', '152']
+Row #6['4/10/2014 18:10', 'Bananas', '23']
+Row #7['4/10/2014 2:40', 'Strawberries', '98']
+
+In [157]: import csv
+
+In [158]: outputFile = open('output.csv', 'w', newline='')
+
+In [159]: outputWriter = csv.writer(outputFile)
+
+In [160]: outputWriter.writerow(['spam', 'eggs', 'bacon', 'ham'])
+Out[160]: 21
+
+In [161]: outputWriter.writerow(['Hello, world!', 'eggs', 'bacon', 'ham'])
+Out[161]: 32
+
+In [162]: outputWriter.writerow([1, 2, 3.141592, 4])
+Out[162]: 16
+
+In [163]: outputFile.close()
+
+In [164]:
+
+In [164]: import csv
+
+In [165]: csvFile = open('example.tsv', 'w', newline='')
+
+In [166]: csvWriter = csv.writer(csvFile, delimiter='\t', lineterminator='\n\n')
+
+In [167]: csvWriter.writerow(['apples', 'oranges', 'grapes'])
+Out[167]: 23
+
+In [168]: csvWriter.writerow(['eggs', 'bacon', 'ham'])
+Out[168]: 16
+
+In [169]: csvWriter.writerow(['spam', 'spam', 'spam', 'spam', 'spam', 'spam'])
+Out[169]: 31
+
+In [170]: csvFile.close()
+
+In [173]: import csv
+
+In [174]: exampleFile = open('example.csv')
+
+In [175]: exampleDictReader = csv.DictReader(exampleFile, ['time', 'name', 'amount
+     ...: '])
+
+In [176]: for row in exampleDictReader:
+     ...:     print(row['time'], row['name'], row['amount'])
+     ...:
+4/5/2014 13:34 Apples 73
+4/5/2014 3:41 Cherries 85
+4/6/2014 12:46 Pears 14
+4/8/2014 8:59 Oranges 52
+4/10/2014 2:07 Apples 152
+4/10/2014 18:10 Bananas 23
+4/10/2014 2:40 Strawberries 98
+
+In [188]: import csv
+
+In [189]: outputFile = open('output.csv', 'w', newline='')
+     ...: outputDictWriter = csv.DictWriter(outputFile, ['Name', 'Pet', 'Phone'])
+
+In [190]: outputDictWriter.writeheader()
+
+In [191]: outputDictWriter.writerow({'Name':'Alice', 'Pet':'cat', 'Phone':'555-123
+     ...: 4'})
+Out[191]: 20
+
+In [192]: outputDictWriter.writerow({'Name':'Bob', 'Phone':'555-9999'})
+Out[192]: 15
+
+In [193]: outputDictWiter.writerow({'Phone':'555-5555', 'Name':'Carol', 'Pet':'dog
+     ...: '})
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-193-8cbd4660c989> in <module>()
+----> 1 outputDictWiter.writerow({'Phone':'555-5555', 'Name':'Carol', 'Pet':'dog'})
+
+NameError: name 'outputDictWiter' is not defined
+
+In [194]: outputDictWriter.writerow({'Phone':'555-5555', 'Name':'Carol', 'Pet':'do
+     ...: g'})
+Out[194]: 20
+
+In [195]: outputFile.close()
+
+In [196]: stringOfJsonData = '{"name":"Zophie", "isCat":true, "miceCaught":0, "fel
+     ...: ineIQ":null}'
+
+In [197]: import json
+
+In [198]: jsonDataAsPythonValue = json.loads(stringOfJsonData)
+
+In [199]: jsonDataAsPythonValue
+Out[199]: {'name': 'Zophie', 'isCat': True, 'miceCaught': 0, 'felineIQ': None}
+
+In [200]: pythonValue = {"name":"Zophie", "isCat":True, "miceCaught":0, "felineIQ"
+     ...: :None}
+
+In [201]: stringOfJasonData = json.dumps(pythonValue)
+
+In [202]: stringofJasonData #haha I spelled it as Jason
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-202-e20bd49d8647> in <module>()
+----> 1 stringofJasonData #haha I spelled it as Jason
+
+NameError: name 'stringofJasonData' is not defined
+
+In [203]: stringOfJasonData #haha I spelled it as Jason
+Out[203]: '{"name": "Zophie", "isCat": true, "miceCaught": 0, "felineIQ": null}'
+
+

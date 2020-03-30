@@ -1,0 +1,370 @@
+In [71]: import openpyxl
+
+In [72]: wb = openpyxl.load_workbook('example.xlsx')
+
+In [73]: type(wb)
+Out[73]: openpyxl.workbook.workbook.Workbook
+
+In [74]: wb = openpyxl.load_workbook('example.xlsx')
+
+In [75]: wb.sheetnames
+Out[75]: ['Sheet1', 'Sheet2', 'Sheet3']
+
+In [76]: sheet = wb['Sheet3']
+
+In [77]: sheet
+Out[77]: <Worksheet "Sheet3">
+
+In [78]: type(sheet)
+Out[78]: openpyxl.worksheet.worksheet.Worksheet
+
+In [79]: sheet.title
+Out[79]: 'Sheet3'
+
+In [80]: anotherSheet = wb.active
+
+In [81]: anotherSheet
+Out[81]: <Worksheet "Sheet1">
+
+In [82]: wb = openpyxl.load_workbook('example.xlsx')
+
+In [83]: sheet = wb['Sheet1']
+
+In [84]: sheet['Al']
+Out[84]:
+(<Cell 'Sheet1'.AL1>,
+ <Cell 'Sheet1'.AL2>,
+ <Cell 'Sheet1'.AL3>,
+ <Cell 'Sheet1'.AL4>,
+ <Cell 'Sheet1'.AL5>,
+ <Cell 'Sheet1'.AL6>,
+ <Cell 'Sheet1'.AL7>)
+
+In [85]: sheet['Al'].value
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-85-dc4b823fd0b8> in <module>()
+----> 1 sheet['Al'].value
+
+AttributeError: 'tuple' object has no attribute 'value'
+
+In [86]: sheet['A1']
+Out[86]: <Cell 'Sheet1'.A1>
+
+In [87]: sheet['A1'].value
+Out[87]: datetime.datetime(2015, 4, 5, 13, 34, 2)
+
+In [88]: c = sheet['B1']
+
+In [89]: c.value
+Out[89]: 'Apples'
+
+In [90]: 'Row %s, Column %s is %s' % (c.row, c.column, c.value)
+Out[90]: 'Row 1, Column 2 is Apples'
+
+In [91]: 'Row 1, Column B is Apples'
+Out[91]: 'Row 1, Column B is Apples'
+
+In [92]: 'Cell %s is %s' % (c.coordinate, c.value)
+Out[92]: 'Cell B1 is Apples'
+
+In [93]: 'Cell B1 is Apples'
+Out[93]: 'Cell B1 is Apples'
+
+In [94]: sheet['C1'].value
+Out[94]: 73
+
+In [95]: sheet.cell(row=1, column=2)
+Out[95]: <Cell 'Sheet1'.B1>
+
+In [96]: sheet.cell(row=1, column=2).value
+Out[96]: 'Apples'
+
+In [97]: for i in range(1, 8, 2):
+    ...:     print(i, sheet.cell(row=i, column=2).value)
+    ...:
+1 Apples
+3 Pears
+5 Apples
+7 Strawberries
+
+In [102]: from openpyxl.utils import get_column_letter, column_index_from_string
+
+In [103]: get_column_letter(1)
+Out[103]: 'A'
+
+In [104]: get_column_letter(2)
+Out[104]: 'B'
+
+In [105]: get_column_letter(27)
+Out[105]: 'AA'
+
+In [106]: get_column_letter(900)
+Out[106]: 'AHP'
+
+In [107]: wb = openpyxl.load_workbook('example.xlsx')
+
+In [108]: sheet = wb['Sheet1']
+
+In [109]: get_column_letter(sheet.max_column)
+Out[109]: 'C'
+
+In [110]: column_index_from_string('A')
+Out[110]: 1
+
+In [111]: column_index_from_string('AA')
+Out[111]: 27
+
+In [112]: sheet = wb['Sheet1']
+
+In [113]: tuple(sheet['A1':'C3'])
+Out[113]:
+((<Cell 'Sheet1'.A1>, <Cell 'Sheet1'.B1>, <Cell 'Sheet1'.C1>),
+ (<Cell 'Sheet1'.A2>, <Cell 'Sheet1'.B2>, <Cell 'Sheet1'.C2>),
+ (<Cell 'Sheet1'.A3>, <Cell 'Sheet1'.B3>, <Cell 'Sheet1'.C3>))
+
+In [114]: for rowOfCellObjects in sheet['A1':'C3']:
+     ...:     for cellObj in rowOfCellObjects:
+     ...:         print(cellObj.coordinate, cellObj.value)
+     ...: print('---END OF ROW ---')
+     ...:
+     ...:
+A1 2015-04-05 13:34:02
+B1 Apples
+C1 73
+A2 2015-04-05 03:41:23
+B2 Cherries
+C2 85
+A3 2015-04-06 12:46:51
+B3 Pears
+C3 14
+---END OF ROW ---
+
+In [115]: sheet = wb.active
+
+In [116]: list(sheet.columns)[1]
+Out[116]:
+(<Cell 'Sheet1'.B1>,
+ <Cell 'Sheet1'.B2>,
+ <Cell 'Sheet1'.B3>,
+ <Cell 'Sheet1'.B4>,
+ <Cell 'Sheet1'.B5>,
+ <Cell 'Sheet1'.B6>,
+ <Cell 'Sheet1'.B7>)
+
+In [117]: for cellObj in list(sheet.columns)[1]:
+     ...:     print(cellObj.value)
+     ...:
+Apples
+Cherries
+Pears
+Oranges
+Apples
+Bananas
+Strawberries
+
+In [118]: wb = openpyxl.Workbook()
+
+In [119]: wb.sheetnames
+Out[119]: ['Sheet']
+
+In [120]: sheet = wb.active
+
+In [121]: sheet.title
+Out[121]: 'Sheet'
+
+In [122]: sheet.title = 'Spam Bacon Eggs Sheet'
+
+In [123]: wb.sheetnames
+Out[123]: ['Spam Bacon Eggs Sheet']
+
+In [124]: wb = openpyxl.load_workbook('example.xlsx')
+
+In [125]: sheet = wb.active
+
+In [126]: sheet.title = 'Spam Spam Spam'
+
+In [127]: wb.save('example_copy.xlsx')
+
+In [128]: wb = openpyxl.Workbook()
+
+In [129]: wb.sheetnames
+Out[129]: ['Sheet']
+
+In [130]: wb.create_sheet()
+Out[130]: <Worksheet "Sheet1">
+
+In [131]: wb.sheetnames
+Out[131]: ['Sheet', 'Sheet1']
+
+In [132]: wb.create_sheet(index=0, title='First Sheet')
+Out[132]: <Worksheet "First Sheet">
+
+In [133]: wb.sheetnames
+Out[133]: ['First Sheet', 'Sheet', 'Sheet1']
+
+In [134]: wb.create_sheet(index=2, title='Middle Sheet')
+Out[134]: <Worksheet "Middle Sheet">
+
+In [135]: wb.sheetnames
+Out[135]: ['First Sheet', 'Sheet', 'Middle Sheet', 'Sheet1']
+
+In [136]: del wb['Middle Sheet']
+
+In [137]: del wb['Sheet1']
+
+In [138]: wb.sheetnames
+Out[138]: ['First Sheet', 'Sheet']
+
+In [139]: import openpyxl
+
+In [140]: wb = openpyxl.Workbook()
+
+In [141]: sheet = wb['Sheet']
+
+In [142]: sheet['A1'] = 'Hello, world!'
+
+In [143]: sheet['A1'].value
+Out[143]: 'Hello, world!'
+
+In [144]: from openpyxl.styles import Font
+
+In [145]: wb = openpyxl.Workbook()
+
+In [146]: sheet = wb['Sheet']
+
+In [147]: italic24Font = Font(size=24, italic=True)
+
+In [148]: sheet['A1'].font = italic24Font
+
+In [149]: sheet['A1'] = 'Hello, world!'
+
+In [150]: wb.save('style.xlsx')
+
+In [151]: wb = openpyxl.Workbook()
+
+In [152]: sheet = wb['Sheet']
+
+In [153]: fontObjl = Font(name='Times New Roman', bold=True)
+
+In [154]: sheet['A1'].font = fontObj1
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-154-34fddbc6bcc6> in <module>()
+----> 1 sheet['A1'].font = fontObj1
+
+NameError: name 'fontObj1' is not defined
+
+In [155]: fontObj1 = Font(name='Times New Roman', bold=True)
+
+In [156]: sheet['A1'].font = fontObj1
+
+In [157]: sheet['A1'] = 'Bold Times New Roman'
+
+In [158]: fontObj2 = Font(size=24, italic=True)
+
+In [159]: sheet['B3'].font = fontObj2
+
+In [160]: sheet['B3'] = '24 pt Italic'
+
+In [161]: wb.save('style.xlsx')
+
+In [162]: sheet['B9']='=SUM(B1:B8)'
+
+In [163]: wb = openpyxl.Workbook()
+
+In [164]: sheet = wb.active
+
+In [165]: sheet['A1'] = 200
+
+In [166]: sheet['A2'] = 300
+
+In [167]: sheet['A3']='=SUM(A1:A2)'
+
+In [168]: wb.save('writeFormula.xlsx')
+
+In [169]: wb = openpyxl.Workbook()
+
+In [170]: sheet = wb.active
+
+In [171]: sheet['A1'] = 'Tall row'
+
+In [172]: sheet['B2'] = 'Wide column'
+
+In [173]: sheet.row_dimensions[1].height = 70
+
+In [174]: sheet.column_dimensions['B'].width = 20
+
+In [175]: wb.save('dimensions.xlsx')
+
+In [176]: wb = openpyxl.Workbook()
+
+In [177]: sheet = wb.active
+
+In [178]: sheet.merge_cells('A1:D3')
+
+In [179]: sheet['A1']
+Out[179]: <Cell 'Sheet'.A1>
+
+In [180]: sheet['A1'] = 'Twelve cells merged together.'
+
+In [181]: sheet.merge_cells('C5:D5')
+
+In [182]: sheet['C5'] = 'Two merged cells.'
+
+In [183]: wb.save('merged.xlsx')
+
+In [184]: wb = openpyxl.Workbook('merged.xlsx')
+
+In [185]: sheet = wb.active
+
+In [186]: sheet.unmerge_cells('A1:D3')
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-186-6d13ff5eeef1> in <module>()
+----> 1 sheet.unmerge_cells('A1:D3')
+
+AttributeError: 'NoneType' object has no attribute 'unmerge_cells'
+
+In [187]: wb = openpyxl.load_workbook('merged.xlsx')
+
+In [188]: sheet = wb.active
+
+In [189]: sheet.unmerge_cells('A1:D3')
+
+In [190]: sheet.unmerge_cells('C5:D5')
+
+In [191]: wb.save('merged.xlsx')
+
+In [193]: wb = openpyxl.load_workbook('produceSales.xlsx')
+
+In [194]: sheet = wb.active
+
+In [195]: sheet.freeze_panes = 'A2'
+
+In [196]: wb.save('freezeExample.xlsx')
+
+In [197]: wb = openpyxl.Workbook()
+
+In [198]: sheet = wb.active
+
+In [199]: for i in range(1, 11):
+     ...:     sheet['A' + str(i)] = i
+     ...:
+
+In [200]: refObj = openpyxl.chart.Reference(sheet, min_col=1, min_row=1, max_col=1
+     ...: , max_row=10)
+
+In [201]: seriesObj = openpyxl.chart.Series(refObj, title='First series')
+
+In [202]: chartObj = openpyxl.chart.BarChart()
+
+In [203]: chartObj.title = 'My Chart'
+
+In [204]: chartObj.append(seriesObj)
+
+In [205]: sheet.add_chart(chartObj, 'C5')
+
+In [206]: wb.save('sampleChart.xlsx')
+
+

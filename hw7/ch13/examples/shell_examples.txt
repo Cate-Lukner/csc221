@@ -1,3 +1,6 @@
+CHAPTER 13 SHELL EXAMPLES
+Cate Lukner
+
 In [71]: import openpyxl
 
 In [72]: wb = openpyxl.load_workbook('example.xlsx')
@@ -366,5 +369,3 @@ In [204]: chartObj.append(seriesObj)
 In [205]: sheet.add_chart(chartObj, 'C5')
 
 In [206]: wb.save('sampleChart.xlsx')
-
-

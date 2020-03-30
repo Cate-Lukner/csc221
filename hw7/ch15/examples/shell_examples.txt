@@ -1,3 +1,6 @@
+CHAPTER 15 SHELL EXAMPLES
+Cate Lukner
+
 In [8]: import PyPDF2
 
 In [9]: cd ~/Documents/Github/csc221/hw7/ch15/examples

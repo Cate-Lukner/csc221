@@ -161,4 +161,62 @@ Out[59]: True
 In [60]: spanElem.attrs
 Out[60]: {'id': 'author'}
 
+In [21]: from selenium import webdriver
+
+In [30]: chrome_options = webdriver.ChromeOptions()
+
+In [31]: chrome_options.add_argument('--no-sandbox')
+
+In [32]: chrome = webdriver.Chrome(r'C:\\Users\\catlu\\Downloads\\chromedriver_win
+    ...: 32 (1)\\chromedriver.exe', chrome_options=chrome_options)
+C:\Users\catlu\AppData\Local\Programs\Python\Python37-32\Scripts\ipython:1: DeprecationWarning: use options instead of chrome_options
+
+DevTools listening on ws://127.0.0.1:50541/devtools/browser/251e3674-aa9c-402d-84f8-f7cbc75d4bd2
+
+In [33]: chrome.get('http://inventwithpython.com')
+
+In [41]: try:
+    ...:     elem = chrome.find_element_by_class_name(' cover-thumb')
+    ...:     print('Found <%s> element with that class anem!' % (elem.tag_name))
+    ...: except:
+    ...:     print('Was not able to find an element with that name.')
+    ...:
+Was not able to find an element with that name.
+
+In [42]: linkElem = chrome.find_element_by_link_text('Read Online for Free')
+
+In [43]: type(linkElem)
+Out[43]: selenium.webdriver.remote.webelement.WebElement
+
+In [44]: linkElem.click()
+
+In [18]: chrome.get('https://login.metafilter.com')
+
+In [20]: userElem = chrome.find_element_by_id('user_name')
+
+In [22]: userElem.send_keys('catherine_Lukner')
+
+In [24]: passwordElem = chrome.find_element_by_id('user_pass')
+
+In [25]: passwordElem.send_keys('password1')
+
+In [26]: passwordElem.submit()
+
+In [31]: chrome.get('https://nostarch.com')
+
+In [32]: htmlElem = chrome.find_element_by_tag_name('html')
+
+In [33]: htmlElem.send_keys(Keys.END)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-33-bff2ef39dff9> in <module>()
+----> 1 htmlElem.send_keys(Keys.END)
+
+NameError: name 'Keys' is not defined
+
+In [34]: from selenium.webdriver.common.keys import Keys
+
+In [35]: htmlElem.send_keys(Keys.END)
+
+In [36]: htmlElem.send_keys(Keys.HOME)
 

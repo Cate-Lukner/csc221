@@ -14,7 +14,7 @@ for row in range(2, sheet.max_row + 1):
     # Each row in the spreadsheet has data fro one census tract.
     state = sheet['B' + str(row)].value
     county = sheet['C' + str(row)].value
-    pop = sheet['D' + st(row)].value
+    pop = sheet['D' + str(row)].value
     
     # Make sure the key for this state exists.
     countyData.setdefault(state, {})
@@ -25,4 +25,11 @@ for row in range(2, sheet.max_row + 1):
     countyData[state][county]['tracts'] += 1
     # Increase the county pop by the pop in this census tract.
     countyData[state][county]['pop'] += int(pop)
+
+# Open a new text file and write the contents of countyData to it.
+print('Writing results..')
+resultFile = open('census2010.py', 'w')
+resultFile.write('allData=' + pprint.pformat(countyData))
+resultFile.close()
+print('Done.')
 

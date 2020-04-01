@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 ''' Link Verification
 
-Author: <your name>
+Author: Cate Lukner 
 '''
 import argparse
 import requests

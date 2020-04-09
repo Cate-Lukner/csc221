@@ -1,0 +1,170 @@
+# IPython log file
+
+get_ipython().run_line_magic('cd', '~/Documents/Github/csc221/hw8/')
+get_ipython().run_line_magic('cd', 'examples')
+get_ipython().run_line_magic('logstart', '-ot shell_examples.txt')
+import pyautogui
+wh = pyautogui.size()
+wh
+#[Out]# Size(width=1366, height=768)
+wh[0]
+#[Out]# 1366
+wh.width
+#[Out]# 1366
+for i in range(10):
+    pyautogui.moveTo(100, 100, duration=0.25)
+    pyautogui.moveTo(200, 100, duration=0.25)
+    pyautogui.moveTo(200, 200, duration=0.25)
+    pyautogui.moveTo(100, 200, duration=0.25)
+for i in range(10):
+    pyautogui.moveTo(100, 0, duration=0.25)
+    pyautogui.moveTo(0, 100, duration=0.25)
+    pyautogui.moveTo(-100, 0, duration=0.25)
+    pyautogui.moveTo(0, -100, duration=0.25)
+for i in range(10):
+    pyautogui.moveTo(100, 0, duration=0.25)
+    pyautogui.moveTo(0, 100, duration=0.25)
+    pyautogui.moveTo(-100, 0, duration=0.25)
+    pyautogui.moveTo(0, -100, duration=0.25)
+for i in range(10):
+    pyautogui.moveTo(100, 100, duration=0.25)
+    pyautogui.moveTo(200, 100, duration=0.25)
+    pyautogui.moveTo(200, 200, duration=0.25)
+    pyautogui.moveTo(100, 200, duration=0.25)
+pyautogui.position()
+#[Out]# Point(x=859, y=709)
+pyautogui.position()
+#[Out]# Point(x=690, y=171)
+p = pyautogui.position()
+p
+#[Out]# Point(x=347, y=106)
+p[0]
+#[Out]# 347
+p.x
+#[Out]# 347
+pyautogui.position()
+#[Out]# Point(x=270, y=25)
+pyautogui.click(270, 25)
+get_ipython().run_line_magic('logstop', '')
+get_ipython().run_line_magic('logstart', '-ot shell_examples.txt')
+pyautogui.rightClick(100, 400)
+pyautogui.position()
+#[Out]# Point(x=266, y=350)
+get_ipython().run_line_magic('ls', '')
+get_ipython().run_line_magic('run', 'spiralDraw.py')
+get_ipython().run_line_magic('run', 'spiralDraw.py')
+pyautogui.scroll(200)
+pyautogui.scroll(200)
+pyautogui.mouseInfo()
+im = pyautogui.screenshot()
+pyautogui.pixel((0, 0))
+pyautogui.pixel(0, 0)
+#[Out]# (98, 116, 77)
+pyautogui.pixel(50, 200)
+#[Out]# (82, 165, 216)
+pyautogui.pixel(130, 135, 144)
+pyautogui.pixel(50, 200, (82, 165, 216))
+pyautogui.pixel((50, 200), (82, 165, 216))
+pyautogui.pixelMatchesColor(50, 200, (130, 135, 144))
+#[Out]# False
+pyautogui.pixelMatchesColor(50, 200, (82, 165, 216))
+#[Out]# False
+pyautogui.pixel(50, 200)
+#[Out]# (255, 254, 238)
+pyautogui.pixelMatchesColor(50, 200, (255, 254, 238))
+#[Out]# True
+get_ipython().run_line_magic('logstop', '')
+# Thu, 09 Apr 2020 08:36:42
+b = pyautogui.locateOnScreen('canvas.png')
+# Thu, 09 Apr 2020 08:36:51
+b
+# Thu, 09 Apr 2020 08:39:01
+b = pyautogui.locateOnScreen('word.png')
+# Thu, 09 Apr 2020 08:39:06
+b
+# Thu, 09 Apr 2020 08:39:10
+b[0]
+# Thu, 09 Apr 2020 08:39:15
+b.left
+# Thu, 09 Apr 2020 08:40:12
+list(pyautogui.locateAllOnScreen('submit.png'))
+# Thu, 09 Apr 2020 08:40:20
+list(pyautogui.locateAllOnScreen('word.png'))
+#[Out]# []
+# Thu, 09 Apr 2020 08:40:55
+pyautogui.click('word.png')
+# Thu, 09 Apr 2020 08:41:38
+try:
+    location = pyautogui.locateOnScreen('canvas.png')
+except:
+    print('Image could not be found.')
+    
+# Thu, 09 Apr 2020 08:46:00
+fw = pyautogui.getActiveWindow()
+# Thu, 09 Apr 2020 08:46:02
+fw
+#[Out]# Win32Window(hWnd=723170)
+# Thu, 09 Apr 2020 08:46:10
+str(fw)
+# Thu, 09 Apr 2020 08:46:29
+fw.title
+#[Out]# 'IPython: C:hw8/examples'
+# Thu, 09 Apr 2020 08:46:36
+fw.size
+#[Out]# Size(width=697, height=735)
+# Thu, 09 Apr 2020 08:46:49
+fw.left, fw.top, fw.right, fw.bottom
+#[Out]# (676, 0, 1373, 735)
+# Thu, 09 Apr 2020 08:46:53
+fw.topleft
+#[Out]# Point(x=676, y=0)
+# Thu, 09 Apr 2020 08:47:00
+fw.area
+#[Out]# 512295
+# Thu, 09 Apr 2020 08:47:25
+pyautogui.click(fw.left + 10, fw.top + 20)
+# Thu, 09 Apr 2020 08:49:15
+fw = pyautogui.getActiveWindow()
+# Thu, 09 Apr 2020 08:49:17
+fw.width
+#[Out]# 697
+# Thu, 09 Apr 2020 08:49:20
+fw.topleft
+#[Out]# Point(x=676, y=0)
+# Thu, 09 Apr 2020 08:49:22
+fw.width
+#[Out]# 697
+# Thu, 09 Apr 2020 08:49:42
+fw.width = 1000
+# Thu, 09 Apr 2020 08:49:52
+fw.topleft = (800, 300)
+# Thu, 09 Apr 2020 08:50:40
+fw = pyautogui.getActiveWindow()
+# Thu, 09 Apr 2020 08:50:48
+fw.isMaximized
+#[Out]# False
+# Thu, 09 Apr 2020 08:50:54
+fw.isMinimized
+#[Out]# False
+# Thu, 09 Apr 2020 08:50:57
+fw.isActive
+#[Out]# True
+# Thu, 09 Apr 2020 08:51:02
+fw.maximize()
+# Thu, 09 Apr 2020 08:51:14
+fw.maximize()
+# Thu, 09 Apr 2020 08:51:17
+fw.isMaximized
+#[Out]# True
+# Thu, 09 Apr 2020 08:51:25
+fw.maximize()
+# Thu, 09 Apr 2020 08:51:29
+fw.restore()
+# Thu, 09 Apr 2020 08:51:44
+fw.minimize()
+# Thu, 09 Apr 2020 08:52:09
+time.sleep(2); fw.active()
+# Thu, 09 Apr 2020 08:52:19
+time.sleep(2); fw.activate()
+# Thu, 09 Apr 2020 08:53:02
+get_ipython().run_line_magic('logstop', '')

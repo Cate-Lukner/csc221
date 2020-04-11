@@ -31,6 +31,7 @@ def check_game_over():
     ''' Checks for Try Again button on the screen. If it does not exist, it
     returns True. If the Try Again button does exist, it returns False.'''
     # Locate Try Again button
+    # Note: OpenCV is required for the confidence keyword
     try_again = pag.locateOnScreen('try_again_button.png', confidence=0.8)   
     # Return True or False based on existence of Try Again button
     if not try_again:

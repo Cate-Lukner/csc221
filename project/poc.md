@@ -1,7 +1,9 @@
 # Final Project Proof of Concept
+#### Cate Lukner
 
 ### Description:
-
+One of my least favorite tasks when having to start my school work is to open up the various applications and browsers I need. To make matters worse, each subject requires different applications and browsers. To get rid of the tedium of opening the necessary browsers then closing them all, I will write a program that will automate this task. The program will pull up the correct Canvas course, web browser (e.g. youtube for math, automate the boring stuff for computer science), messaging (email for math, discord for computer science), application (e.g. mathematica for calculus), and folder with various files. Once I am done with the subject, I can pass another arguement to the program which will close all applications I opened. For computer science, I will also have another option to ask Dr. O'Gwynn on discord what I should be doing for that day XD.
 ### Possible Implementation Strategies:
-
+Since I feel most comfortable with functional programming, each task of opening and closing the necessary applications will be seperate functions. The main function will be responsible for taking the command line arguments. It will also contain the logic to run the correct functions. Since all of my courses will need me to be logged into canvas, I will have a function that uses selenium to open canvas and log in. Another function will take the course name and open the Canvas page for it. In seperate functions, I will use webbrowsers to open the necessary browsers for each subject. For writing a message to Dr. O'Gwynn, I will create a fuction that uses pyautogui.write(<>). To close everything, I will have a function that checks for what is open. If it sees an application is open relevant to the subject passed in as an argument, it will close it.  
 ### Relevant Source:
+Selenium will be useful for opening and logging into Canvas. The webbrowser module will be revelant in opening the web browsers or messaging I need. I may need to use pyautogui to write the messages. To open the correct course folder on my computer, pathlib may come into use. The os module will be relevant to opening various system applications like Mathematica.  
